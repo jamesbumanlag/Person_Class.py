@@ -5,6 +5,7 @@ class Person:
         self.lastname = lastname
         self.age = age
         self.gender = gender
+    
 
 # create a class student as a inheritance of Class Person
 class Student(Person):
@@ -12,6 +13,15 @@ class Student(Person):
         super().__init__(firstname, lastname, age, gender)
         self.course = course
         self.year_sec = year_sec
+    def introduce(self):
+        print()
+        print('*********************************')
+        print(f'Name: {self.firstname} {self.lastname}') 
+        print(f'Age: {self.age}')
+        print(f'Gender: {self.gender}')
+        print(f'Course: {self.course}')
+        print(f'Year/Section: {self.year_sec}')
+        print('*********************************')
 
 # create a class Employee as a inheritance of Class Person
 class Employee(Person):
@@ -19,7 +29,15 @@ class Employee(Person):
         super().__init__(firstname,lastname,age,gender)
         self.position = position
         self.salary = salary
-
+    def introduce(self):
+        print()
+        print('*********************************')
+        print(f'Name: {self.firstname} {self.lastname}') 
+        print(f'Age: {self.age}')
+        print(f'Gender: {self.gender}')
+        print(f'Position: {self.position}')
+        print(f'Salary: {self.salary}')
+        print('*********************************')
 # create an input_person function 
 # to allow user to person input values
 def input_person():
@@ -68,7 +86,7 @@ def show_student(student):
     print('*********************************')
 
 # creata a function that will show the data of employee function
-def show_employee(employee):
+def show_employee():
     print()
     print('---------------------------------')
     print(f'Name: {employee.firstname} {employee.lastname}')
@@ -85,61 +103,71 @@ while True:
     print('''
 ------------------------------
 B-Tech Academy
-Student : S
-Employee : E
-Exit : X
+Student     : 1
+Employee    : 2
+Exit        : 3
 ------------------------------
     ''')
+    student_list = []
+    employee_list = []
+    user = input('>>> ')
 
-    user = input('>>> ').upper()
-
-    if user == 'S':
+    if user == '1': # Student option
         while True:              
-            # assign input_student function data 
-            # to student_data variable
-            student_data = input_student() 
+           
+            print()
+            print('STUDENT')
 
-            # extract all data of student data using '*' 
-            # then used as parameter to Student Class 
-            # and assigned to variable student
-            student = Student(*student_data) 
+            # firstname = input('Firstname: ')
+            # lastname = input('Lastname: ')
+            # age = input('Age: ')
+            # gender = input('Gender: ')
+            # course = input('Course: ')
+            # year_sec = input('Year/Section: ')
 
-            # show data of the show_person function 
-            # from student variable
-            # (student variable has all the data of person function)
-            show_student(student)
+            student_func = input_student()
+            student1 = Student(*student_func)
+            student_list.append(student1)
+
 
             print('Add More? Y/N')
             user_choice = input('>>>  ').upper()
             if user_choice == 'N':
+                
+                for student1 in student_list:
+                    student1.introduce()
                 break
+             
             
 
-    elif user == 'E':
+    elif user == '2':
         while True:
-            # assign input_student function data 
-            # to employee_data variable
-            employee_data = input_employee()
+            print()
+            print('EMPLOYEE')
+            # firstname = input('Firstname: ')
+            # lastname = input('Lastname: ')
+            # age = input('Age: ')
+            # gender = input('Gender: ')
+            # position = input('Position: ')
+            # salary = input('Salary: ')
+            
+            employee_func = input_employee()
+            employee = Employee(*employee_func)
+            employee_list.append(employee)
 
-
-            # extract all data of employee_data data using '*' 
-            # then used as parameter to Employee Class 
-            # and assigned to variable employee
-            employee = Employee(*employee_data)
-
-            # show data of the show_student function 
-            # from employee variable
-            # (employee variable has all the data of person function)
-            show_employee(employee)
 
             print('Add More? Y/N')
             user_choice = input('>>>  ').upper()
             if user_choice == 'N':
+                
+                
+                for employee in employee_list:
+                    employee.introduce()
                 break
-    
+            
     
     # end the program            
-    elif user == 'X': 
+    elif user == '3': 
         break
     
     # continue the loop
